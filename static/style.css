@@ -148,11 +148,6 @@ i.menu-mobile {
 .menu-nav-active #header {
     left: 0;
 }
-.pdf-container {
-  width: 80%;
-  height: 90vh;
-  border: 1px solid #ccc;
-}
 
 @media (max-width: 1024px) {
   #header {
