@@ -1,3 +1,14 @@
+//tela de carregamento
+
+window.addEventListener("load", function() {
+  const loadingScreen = document.getElementById("loading-screen");
+  const mainContent = document.getElementById("main-content");
+  
+  // Esconde a tela de carregamento e exibe o conteúdo principal
+  loadingScreen.style.display = "none";
+  mainContent.style.display = "block";
+});
+
 /* Abre e fecha menu lateral em modo mobile */
 
 const menuMobile = document.querySelector(".menu-mobile");
