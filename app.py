@@ -7,6 +7,10 @@ load_dotenv()
 app = Flask(__name__)
 app.secret_key = 'gustavo'
 
+app.config['ENV'] = 'production'
+app.config['DEBUG'] = False
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 31536000
+
 mail_settings = {
     "MAIL_SERVER": 'smtp.gmail.com',
     "MAIL_PORT": 465,
@@ -52,7 +56,7 @@ def send():
         )
         mail.send(msg)
         flash('Mensagem enviada com sucesso!')
-    return redirect('/')
+    return redirect('/home')
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000)

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carregando...</title>
+    <style>
+        /* Spinner Styles */
+        .loader {
+            border: 8px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 8px solid #3498db;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin: 100px auto;
+            display: block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="loader"></div>
+    <h2 style="text-align: center;">Iniciando o site, por favor aguarde...</h2>
+
+    <script>
+        // Tenta redirecionar para o site Flask após um intervalo
+        function checkServer() {
+            fetch("https://portfolio-gustavo-n2tl.onrender.com/", { method: 'GET' })
+                .then(response => {
+                    if (response.ok) {
+                        // Servidor pronto, redireciona
+                        window.location.href = "https://portfolio-gustavo-n2tl.onrender.com/";
+                    }
+                })
+                .catch(error => {
+                    // Servidor não está pronto, tenta novamente em 2 segundos
+                    setTimeout(checkServer, 2000);
+                });
+        }
+        
+        // Inicia a verificação do servidor
+        checkServer();
+    </script>
+</body>
+</html>
