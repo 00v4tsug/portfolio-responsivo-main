@@ -15,8 +15,10 @@
 <body>
     <div id="loading-screen">
         <div class="spinner"></div>
-        <p>Carregando...</p>
+        <div class="spinner">Iniciando o site, por favor aguarde...</div>
     </div>
+
+<div id="main-content" style="display: none;">
 
     <i class="bi bi-list menu-mobile"></i>
 
@@ -288,7 +290,7 @@
                             <p><em>Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul</em></p>
                             <p>Introdução à Computação; Componentes e Hardwares; Representação de Dados no Computador; Sistemas e Conversões; Funções e Portas
                                 Lógicas. </p>
-                                <embed src="static/img/Computação_Fundamentos-Certificado_digital_2671975.pdf" type="application/pdf" width="100%" height="100%">
+                                <p>Visualize o certificado <a href="static/img/Computação_Fundamentos-Certificado_digital_2671975.pdf" target="_blank">aqui</a>.</p>
                         </div>
 
                         <div class='cv-item' data-anime="up">
@@ -296,7 +298,7 @@
                             <h5>                                                  </h5>
                             <p><em>Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul</em></p>
                             <p>Conceitos fundamentais; Modelos e modelagem de dados; O modelo de dados relacional e Normalização de dados</p>
-                            <embed src="static/img/Banco_de_Dados_1_fundamentos-Certificado_digital_1631190.pdf" type="application/pdf" width="100%" height="100%">
+                            <p>Visualize o certificado <a href="static/img/Banco_de_Dados_1_fundamentos-Certificado_digital_1631190.pdf" target="_blank">aqui</a>.</p>
                         </div>
 
                         <div class='cv-item' data-anime="up">
@@ -548,6 +550,32 @@
 
     <script src="../static/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="../static/script.js"></script>
+</div>
+<script>
+    // Função para verificar a validação do servidor
+    function checkIfReady() {
+        fetch("/?check=1")
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "ready") {
+                    // Esconde a tela de carregamento
+                    document.getElementById("loading-screen").classList.add("hidden");
+                    // Mostra o conteúdo principal
+                    document.getElementById("main-content").style.display = "block";
+                } else {
+                    // Se ainda não está pronto, verifica novamente após um tempo
+                    setTimeout(checkIfReady, 500);
+                }
+            })
+            .catch(error => {
+                console.error("Erro na validação:", error);
+                setTimeout(checkIfReady, 1000); // Tenta novamente em caso de erro
+            });
+    }
+
+    // Inicia a verificação quando a página estiver carregada
+    window.addEventListener("load", checkIfReady);
+</script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, request, flash
+from flask import Flask, render_template, redirect, request, flash, jsonify
 from flask_mail import Mail, Message
 from dotenv import load_dotenv
 import os
@@ -31,6 +31,9 @@ class Contato:
 
 @app.route('/')
 def index():
+    if request.args.get("check") == "1":
+        # Retorna um JSON indicando que o conteúdo está pronto para ser exibido
+        return jsonify({"status": "ready"})
     return render_template('index.html')
 
 @app.route('/send', methods=['GET', 'POST'])

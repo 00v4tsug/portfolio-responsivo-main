@@ -7,76 +7,55 @@ body {
   height: 100%;
 }
 
+/* Tela de carregamento: centraliza e cria fundo escurecido */
 #loading-screen {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #ffffff;
-  color: #333;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
-  transition: opacity 0.5s ease; /* Transição suave ao sair */
+  color: #ffffff;
+  font-family: Arial, sans-serif;
+  z-index: 1000;
 }
 
-/* Spinner com efeito de pulso */
-.spinner-pulse {
-  position: relative;
-  width: 50px;
-  height: 50px;
-  background-color: #3498db;
+/* Estilo do spinner circular */
+.spinner {
+  border: 8px solid rgba(255, 255, 255, 0.3);
+  border-top: 8px solid #ffffff;
   border-radius: 50%;
-  animation: pulse 1.5s infinite ease-in-out;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
   margin-bottom: 15px;
 }
 
-/* Bolinha girando ao redor do spinner */
-.spinner-rotate {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 10px;
-  height: 10px;
-  background-color: #fff;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: rotate 1s linear infinite;
+/* Animação do spinner */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
 }
 
-/* Animação de pulso para o spinner principal */
-@keyframes pulse {
-  0%, 100% {
-      transform: scale(0.8);
-      opacity: 0.7;
-  }
-  50% {
-      transform: scale(1.2);
-      opacity: 1;
-  }
+/* Estilo do texto de carregamento */
+.loading-text {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  animation: fade 2s infinite;
 }
 
-/* Animação de rotação para a bolinha */
-@keyframes rotate {
-  0% {
-      transform: rotate(0deg) translate(20px) rotate(0deg);
-  }
-  100% {
-      transform: rotate(360deg) translate(20px) rotate(-360deg);
-  }
+/* Animação para efeito de fade no texto */
+@keyframes fade {
+  0%, 100% { opacity: 0.9; }
+  50% { opacity: 0.5; }
 }
 
-/* Estilo para o texto */
-#loading-screen p {
-  font-size: 1.2em;
-  color: #666;
-  text-align: center;
-}
-
-/* Exibe o conteúdo principal após o carregamento */
-#main-content {
+/* Ocultar tela de carregamento */
+.hidden {
   display: none;
 }
 
@@ -175,6 +154,15 @@ section#inicio {
   height: 100vh;
 }
 
+/* Ajustes para dispositivos móveis */
+@media (max-width: 768px) {
+  section#inicio {
+    background-attachment: scroll; /* Permite que a imagem role junto com o conteúdo */
+    background-position: top; /* Ajusta a posição para melhor visualização em telas pequenas */
+    height: 50vh; /* Reduz a altura para evitar que a imagem ocupe muito espaço */
+  }
+
+}
 section#inicio h2 {
   font-size: 6rem;
 }
@@ -228,20 +216,6 @@ i.menu-mobile {
   }
   i.menu-mobile{
     display: flex;
-  }
-  section#inicio{
-    background-image: url("./img/bannerPortifoliomeobile.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: center;
-  }
-  section#inicio h2{
-    font-size: 3.5rem ;
-  }
-  section#inicio span#subtitle{
-    margin-right: 0;
-    font-size: 1rem;
   }
   #main{
       margin-left: 0;
